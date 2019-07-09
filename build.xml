@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<project name="Hello World Project" default="run">
+   
+   <target name="clean">
+      <delete dir="build"/>
+   </target>
+   
+   <target name ="compile" depends="clean">
+	<mkdir dir="build/classes"/>
+	<javac includeantruntime="false" srcdir="src" destdir="build/classes"/>
+   </target>
+   
+   <target name="jar" depends="compile">
+    <mkdir dir="build/jar"/>
+    <jar destfile="build/jar/HelloAnt.jar" basedir="build/classes">
+       <manifest>
+	       <attribute name="Main-Class" value="com.cruds.training.HelloAnt"/>
+        </manifest>
+    </jar>
+ </target>
+ 
+ <target name="run" depends="jar">
+	<java jar="build/jar/HelloAnt.jar" fork="true"/>
+ </target>
+
+</project>
